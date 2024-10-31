@@ -1,0 +1,59 @@
+<!-- dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+    <h2 class="text-center my-4">Dashboard Overview</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">Total Users</div>
+                <div class="card-body">
+                    <h5 class="card-title display-4">{{ total_users }}</h5>
+                    <p class="card-text">Total number of users registered.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">Active Sessions</div>
+                <div class="card-body">
+                    <h5 class="card-title display-4">{{ active_sessions }}</h5>
+                    <p class="card-text">Number of users currently logged in.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white">Pending Approvals</div>
+                <div class="card-body">
+                    <h5 class="card-title display-4">{{ pending_approvals }}</h5>
+                    <p class="card-text">Number of users pending approval.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">Total Attendances</div>
+                <div class="card-body">
+                    <h5 class="card-title display-4">{{ total_attendances }}</h5>
+                    <p class="card-text">Total number of attendance records.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">Admin Users</div>
+                <div class="card-body">
+                    <h5 class="card-title display-4">{{ admin_users_count }}</h5>
+                    <p class="card-text">Total number of admin users.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

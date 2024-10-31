@@ -1,0 +1,65 @@
+/* style.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f9;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+}
+
+.nav-link {
+    color: #fff;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    color: #ddd;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: none;
+    font-weight: 600;
+}
+
+.card-body {
+    background-color: #fff;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+.content {
+    margin-top: 30px;
+}
+
+/* Dashboard Cards */
+.card .display-4 {
+    font-size: 2rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

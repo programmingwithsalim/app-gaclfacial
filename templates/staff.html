@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Manage Staff</h2>
+
+<!-- Add Staff Form -->
+<form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.full_name.label(class="form-label") }}
+        {{ form.full_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.staff_id.label(class="form-label") }}
+        {{ form.staff_id(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.gender.label(class="form-label") }}
+        {{ form.gender(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.phone.label(class="form-label") }}
+        {{ form.phone(class="form-control") }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.status.label(class="form-label") }}
+        {{ form.status(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.staff_type.label(class="form-label") }}
+        {{ form.staff_type(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.face_image.label(class="form-label") }}
+        {{ form.face_image(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Staff</button>
+</form>
+
+<hr/>
+
+<!-- Staff Table -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Staff ID</th>
+            <th>Full Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Staff Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for staff in staff_list %}
+        <tr>
+            <td>{{ staff.staff_id }}</td>
+            <td>{{ staff.full_name }}</td>
+            <td>{{ staff.gender }}</td>
+            <td>{{ staff.email }}</td>
+            <td>{{ staff.phone }}</td>
+            <td>
+                <span class="badge text-bg-{{ 'success' if staff.status == 'active' else 'danger' }}">{{ staff.status }}</span>
+            </td>
+            <td>
+                <span class="badge text-bg-{{ 'info' if staff.staff_type == 'regular' else 'warning' }}">{{ staff.staff_type }}</span>
+            </td>
+            <td>
+                <a href="{{ url_for('staff.edit_staff', id=staff.id) }}" class="btn btn-warning">Edit</a>
+                <form action="{{ url_for('staff.delete_staff', id=staff.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

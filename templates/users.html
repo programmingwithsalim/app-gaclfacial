@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Users Management</h3>
+<form method="POST">
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.role.label(class="form-label") }}
+        {{ form.role(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Add User</button>
+</form>
+
+<hr>
+
+<h4>Current Users</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>
+                <span class="badge text-bg-{{ 'success' if user.role == 'admin' else 'secondary' }}">{{ user.role }}</span>
+            </td>
+            <td>
+                <a href="{{ url_for('user.edit_user', user_id=user.id) }}" class="btn btn-primary">Edit</a>
+                <form action="{{ url_for('user.delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>                
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

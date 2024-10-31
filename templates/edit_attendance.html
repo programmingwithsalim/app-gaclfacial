@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Edit Attendance</h2>
+
+    <form action="{{ url_for('attendance.edit_attendance', attendance_id=attendance.id) }}" method="POST">
+        {{ form.csrf_token }}
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ attendance.username }}" required readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="clock_in" class="form-label">Clock In</label>
+            <input type="time" class="form-control" id="clock_in" name="clock_in" value="{{ attendance.clock_in.strftime('%H:%M') }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="clock_out" class="form-label">Clock Out</label>
+            <input type="time" class="form-control" id="clock_out" name="clock_out" value="{{ attendance.clock_out.strftime('%H:%M') if attendance.clock_out else '' }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ attendance.date.strftime('%Y-%m-%d') }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{{ url_for('attendance.attendance') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
